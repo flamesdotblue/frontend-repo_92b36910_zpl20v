@@ -1,28 +1,53 @@
 import { useState } from 'react'
+import Dashboard from './components/Dashboard'
+import Rewards from './components/Rewards'
+import Profile from './components/Profile'
+import BottomNav from './components/BottomNav'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function SpeakScreen() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="p-5 md:p-8 max-w-3xl mx-auto">
+      <header className="mb-6">
+        <h2 className="text-white/95 text-2xl font-bold">Speak</h2>
+        <p className="text-white/80">Practice out loud. We’re cheering for you!</p>
+      </header>
+      <div className="bg-white rounded-2xl shadow-lg p-8 border border-white/70 flex flex-col items-center">
+        <button className="relative h-48 w-48 rounded-full bg-green-600 text-white flex items-center justify-center shadow-2xl ring-8 ring-green-200/60">
+          <span className="absolute inset-0 rounded-full animate-ping bg-emerald-400/20" />
+          <span className="absolute inset-0 rounded-full animate-pulse bg-emerald-300/10" />
+          <svg className="h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 1v11a4 4 0 0 1-8 0V6" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" y1="19" x2="12" y2="23" />
+            <line x1="8" y1="23" x2="16" y2="23" />
+          </svg>
+        </button>
+        <div className="mt-6 text-center">
+          <div className="text-gray-800 font-semibold">Tap to start speaking</div>
+          <div className="text-gray-500 text-sm">“Every word makes you stronger.”</div>
         </div>
       </div>
     </div>
   )
 }
 
-export default App
+export default function App() {
+  const [tab, setTab] = useState('dashboard')
+
+  return (
+    <div className="min-h-screen relative overflow-x-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-green-100 to-green-200" />
+      <div className="absolute inset-0 opacity-60">
+        <div className="pointer-events-none absolute -top-24 -left-16 h-96 w-96 rounded-full bg-emerald-300 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/3 -right-16 h-80 w-80 rounded-full bg-green-300 blur-3xl" />
+      </div>
+      <main className="relative">
+        {tab === 'dashboard' && <Dashboard name="Alex" />}
+        {tab === 'speak' && <SpeakScreen />}
+        {tab === 'rewards' && <Rewards />}
+        {tab === 'profile' && <Profile />}
+      </main>
+      <BottomNav current={tab} onChange={setTab} />
+    </div>
+  )
+}

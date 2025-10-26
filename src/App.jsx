@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Mic } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import Rewards from './components/Rewards'
 import Profile from './components/Profile'
@@ -15,12 +16,8 @@ function SpeakScreen() {
         <button className="relative h-48 w-48 rounded-full bg-green-600 text-white flex items-center justify-center shadow-2xl ring-8 ring-green-200/60">
           <span className="absolute inset-0 rounded-full animate-ping bg-emerald-400/20" />
           <span className="absolute inset-0 rounded-full animate-pulse bg-emerald-300/10" />
-          <svg className="h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 1v11a4 4 0 0 1-8 0V6" />
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-            <line x1="12" y1="19" x2="12" y2="23" />
-            <line x1="8" y1="23" x2="16" y2="23" />
-          </svg>
+          <span className="absolute -inset-4 rounded-full bg-emerald-500/10 blur-xl" />
+          <Mic className="h-16 w-16" strokeWidth={2.5} />
         </button>
         <div className="mt-6 text-center">
           <div className="text-gray-800 font-semibold">Tap to start speaking</div>
